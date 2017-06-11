@@ -1,0 +1,29 @@
+alias gst='git status '
+alias ga='git add '
+alias gc='git checkout '
+alias gcf='git checkout -- '
+alias grh='git reset HEAD '
+alias gdf='git diff '
+alias gdfc='git diff --cached '
+alias gf='git fetch'
+alias gm='git commit -m'
+alias rmt='git symbolic-ref --short HEAD'
+alias glclean='git branch --merged | egrep -v "(^\*|master|staging)" | xargs git branch -d'
+alias grclean='git branch -r --merged | grep -v "master\|staging" | sed "s/origin\///" | xargs -n 1 git push --delete origin'
+
+alias gpl='gf && rmt | xargs git pull origin '
+alias gps='gf && rmt | xargs git push origin '
+alias gamend='git commit -v --amend '
+alias soft='gf && rmt | xargs -I remote git reset --soft origin/remote'
+alias hard='gf && rmt | xargs -I remote git reset --hard origin/remote'
+alias vv='glclean && git branch -vv --sort=committerdate'
+
+ours() {
+  git checkout --ours "$1"
+  git add "$1"
+}
+
+theirs() {
+  git checkout --theirs "$1"
+  git add "$1"
+}

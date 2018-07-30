@@ -7,6 +7,6 @@ To use this aliases:
   fi
   ```
 
-As usual with this kind of stuff, there's no guarantee that they do what you want, and use it only after understanding what it actually does.
+Caveat Emptor :)
 
 Everything is licensed under the MIT license. Bug reports and pull requests are welcome.

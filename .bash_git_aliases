@@ -32,3 +32,15 @@ theirs() {
   git checkout --theirs "$1"
   git add "$1"
 }
+
+bak() {
+  rmt | xargs -I remote cp -r "$1"{,.remote}
+}
+
+kab() {
+  rmt | xargs -I remote cp -r "$1"{.remote,}
+}
+
+dab() {
+  gst | grep -e "\.$(rmt)$" | xargs -I file rm -rf file
+}

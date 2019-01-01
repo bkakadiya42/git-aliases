@@ -8,7 +8,12 @@ alias gdfc='git diff --cached '
 alias gf='git fetch'
 alias gm='git commit -m'
 alias rmt='git symbolic-ref --short HEAD'
-alias glclean='git branch --merged | egrep -v "(^\*|master|staging)" | xargs git branch -d'
+
+alias gam='gst | grep "deleted:\|modified:" | awk '"'"'{print $2}'"'"'| xargs git add'
+alias glMergedClean='git branch --merged | egrep -v "(^\*|master|staging)" | xargs git branch -d'
+alias glFetchPruned='git fetch -p'
+alias glDeletedClean='git branch -r | awk '"'"'{print $1}'"'"' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '"'"'{print $1}'"'"' | xargs git branch -d'
+alias glclean='glMergedClean && glFetchPruned && glDeletedClean'
 alias grclean='git branch -r --merged | grep -v "master\|staging" | sed "s/origin\///" | xargs -n 1 git push --delete origin'
 
 alias gpl='gf && rmt | xargs git pull origin '
